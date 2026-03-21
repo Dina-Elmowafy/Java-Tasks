@@ -1,4 +1,9 @@
-package EWalletSystem;
+package EWalletSystem.service;
+
+import EWalletSystem.TransactionLogger;
+import EWalletSystem.repository.WalletRepository;
+import EWalletSystem.model.BaseAccount;
+import EWalletSystem.model.UserAccount;
 
 import java.util.Scanner;
 

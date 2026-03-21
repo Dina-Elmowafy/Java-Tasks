@@ -1,4 +1,7 @@
-package EWalletSystem;
+package EWalletSystem.repository;
+
+import EWalletSystem.model.AdminAccount;
+import EWalletSystem.model.BaseAccount;
 
 import java.util.ArrayList;
 import java.util.List;

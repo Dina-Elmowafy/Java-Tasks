@@ -1,4 +1,4 @@
-package EWalletSystem;
+package EWalletSystem.model;
 
 public abstract class BaseAccount {
 
