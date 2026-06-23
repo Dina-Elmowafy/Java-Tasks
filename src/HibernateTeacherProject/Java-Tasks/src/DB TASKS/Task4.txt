@@ -1,0 +1,8 @@
+Both options technically do the same thing—they prevent the ID from being empty or duplicated.
+ However, the first option is the standard best practice.In the first code, by using PRIMARY KEY
+ and explicitly naming the constraint (dir_did_pk), you are telling the database that this is the
+ main identifier for the table. Naming it makes it much easier to manage, find, or drop later on.
+The second option just applies two separate rules (NOT NULL and UNIQUE). If you do it this way,
+the database will just assign a random, system-generated name to the rule, which makes maintenance harder later.
+Also, while you can use UNIQUE on many columns (like an email or phone number), a table can only have one PRIMARY KEY.
+So for an ID column, the first approach is definitely the way to go.
