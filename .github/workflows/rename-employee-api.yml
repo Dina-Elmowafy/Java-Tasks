@@ -1,0 +1,20 @@
+name: Rename Employee API folder
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rename folder
+        shell: bash
+        run: |
+          if [ ! -d src/EmployeeApiOracle ]; then exit 0; fi
+          git mv src/EmployeeApiOracle src/EmployeeApi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Rename EmployeeApiOracle folder to EmployeeApi"
+          git push
