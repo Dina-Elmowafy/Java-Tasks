@@ -1,0 +1,49 @@
+{
+  "info": {
+    "name": "Employee API Oracle",
+    "_postman_id": "3d2cf47d-f670-4a72-927f-employee-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api/employees"
+    }
+  ],
+  "item": [
+    {
+      "name": "Get all employees",
+      "request": {"method": "GET", "url": "{{baseUrl}}"}
+    },
+    {
+      "name": "Get by list of IDs",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "[1, 2, 3]"},
+        "url": "{{baseUrl}}/by-ids"
+      }
+    },
+    {
+      "name": "Save employee",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"name\":\"Ahmed Ali\",\"age\":25,\"phoneNumber\":\"01012345678\"}"},
+        "url": "{{baseUrl}}"
+      }
+    },
+    {
+      "name": "Search using function name",
+      "request": {"method": "GET", "url": "{{baseUrl}}/search/function?name=ahmed"}
+    },
+    {
+      "name": "Search using JPQL",
+      "request": {"method": "GET", "url": "{{baseUrl}}/search/jpql?name=ahmed"}
+    },
+    {
+      "name": "Search using native Oracle query",
+      "request": {"method": "GET", "url": "{{baseUrl}}/search/native?name=ahmed"}
+    }
+  ]
+}
