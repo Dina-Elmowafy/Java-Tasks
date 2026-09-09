@@ -10,16 +10,12 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Check;
 
 @Entity
-@Table(name = "teachers")
-@Check(constraints = "age between 15 and 20")
 public class Teacher {
 
     @Id
-    @Column(name = "teacher_id")
     private Long id;
 
     @Size(max = 50)
-    @Column(name = "teacher_name", length = 50)
     private String name;
 
     @Min(15)
@@ -27,7 +23,7 @@ public class Teacher {
     @Column(name = "age")
     private Integer age;
 
-    @Column(name = "address", unique = true)
+    @Column(unique = true)
     private String address;
 
     public Teacher() {
