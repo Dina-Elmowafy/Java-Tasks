@@ -1,94 +1,67 @@
-package com.student.employee.controller;
+package Api.controller;
 
-import com.student.employee.model.Employee;
-import com.student.employee.service.EmployeeService;
-import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
+import Api.model.Employee;
+import Api.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/employees")
-@Validated
 public class EmployeeController {
-
-    private final EmployeeService employeeService;
-
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
-    // API to get all employees
-    @GetMapping
-    public List<Employee> getAllEmployees() {
-        return employeeService.getAllEmployees();
+    private EmployeeService employeeService;
+    @GetMapping("/employees")
+    public List<Employee> getEmployees(){
+       return employeeService.getEmployees();
     }
 
-    // POST is used because sending a body with GET is not reliable.
-    @PostMapping("/by-ids")
-    public List<Employee> getEmployeesByIds(@RequestBody List<Long> ids) {
-        return employeeService.getEmployeesByIds(ids);
+    @PostMapping("/createEmployees")
+    public List<Employee> createEmployees(@RequestBody List<Employee> employees) {
+        return employeeService.createEmployees(employees);
     }
 
-    @PostMapping
-    public ResponseEntity<Employee> saveEmployee(@Valid @RequestBody Employee employee) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(employeeService.saveEmployee(employee));
+    @PutMapping("/updateEmployee")
+    public Employee updateEmployee(@RequestBody Employee employee) {
+        employeeService.updateEmployee(employee);
+        return employee;
     }
 
-    @PostMapping("/batch")
-    public ResponseEntity<List<Employee>> saveEmployees(
-            @Valid @RequestBody List<@Valid Employee> employees) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(employeeService.saveEmployees(employees));
+   @DeleteMapping("/deleteEmployee")
+    public void deleteEmployee(){
+        employeeService.deleteAllEmployee();
     }
-
-    @PutMapping("/{id}")
-    public Employee updateEmployee(
-            @PathVariable Long id,
-            @Valid @RequestBody Employee employee) {
-        return employeeService.updateEmployee(id, employee);
+    @PostMapping("/getEmployeesByID")
+    public List<Employee> getEmployeesByID (@RequestBody List<Integer> ids){
+        return  employeeService.getEmployeesByID(ids);
     }
-
-    @PutMapping("/batch")
-    public List<Employee> updateEmployees(
-            @Valid @RequestBody List<@Valid Employee> employees) {
+    @PutMapping("/updateEmployees")
+    public List<Employee> updateEmployees(@RequestBody List<Employee> employees){
         return employeeService.updateEmployees(employees);
     }
-
-    @DeleteMapping
-    public ResponseEntity<Void> deleteAllEmployees() {
-        employeeService.deleteAllEmployees();
-        return ResponseEntity.noContent().build();
+    @PostMapping("/createEmployee")
+    public Employee createEmployee(@RequestBody Employee employee){
+        return employeeService.createEmployee(employee);
+    }
+    @DeleteMapping("/deleteEmployeeById/{id}")
+    public void deleteEmployee(@PathVariable int id){
+        employeeService.deleteEmployee(id);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteEmployeeById(@PathVariable Long id) {
-        employeeService.deleteEmployeeById(id);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/deleteEmployees")
+    public void deleteEmployees(@RequestBody List<Integer> ids){
+        employeeService.deleteEmployees(ids);
     }
-
-    @DeleteMapping("/by-ids")
-    public ResponseEntity<Void> deleteEmployeesByIds(@RequestBody List<Long> ids) {
-        employeeService.deleteEmployeesByIds(ids);
-        return ResponseEntity.noContent().build();
+    @GetMapping("searchByName")
+    public List<Employee> searchByName(String name){
+        return employeeService.searchByName(name);
     }
-
-    @GetMapping("/search/function")
-    public List<Employee> searchUsingFunctionName(@RequestParam String name) {
-        return employeeService.searchUsingFunctionName(name);
-    }
-
-    @GetMapping("/search/jpql")
-    public List<Employee> searchUsingJpql(@RequestParam String name) {
-        return employeeService.searchUsingJpql(name);
-    }
-
-    @GetMapping("/search/native")
-    public List<Employee> searchUsingNativeQuery(@RequestParam String name) {
-        return employeeService.searchUsingNativeQuery(name);
+    @GetMapping("searchByNameNative")
+    public List<Employee> searchByNameNative(String name){
+        return employeeService.searchByNameNative(name);
     }
 }
+
+
