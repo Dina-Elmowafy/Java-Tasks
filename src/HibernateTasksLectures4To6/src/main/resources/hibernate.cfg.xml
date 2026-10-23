@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "https://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="hibernate.connection.driver_class">
+            oracle.jdbc.OracleDriver
+        </property>
+        <property name="hibernate.connection.url">
+            jdbc:oracle:thin:@localhost:1521:XE
+        </property>
+        <property name="hibernate.connection.username">
+            system
+        </property>
+        <property name="hibernate.connection.password">
+            oracle
+        </property>
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.OracleDialect
+        </property>
+        <property name="hibernate.hbm2ddl.auto">
+            update
+        </property>
+        <property name="hibernate.show_sql">
+            true
+        </property>
+        <property name="hibernate.format_sql">
+            true
+        </property>
+
+        <mapping class="com.student.hibernate.lecture4.task1.Player"/>
+        <mapping class="com.student.hibernate.lecture4.task2.Hospital"/>
+        <mapping class="com.student.hibernate.lecture4.task2.Doctor"/>
+        <mapping class="com.student.hibernate.lecture4.task2.DoctorDetails"/>
+        <mapping class="com.student.hibernate.lecture4.task2.Patient"/>
+
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Student"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Passport"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Employee"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Department"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Customer"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Order"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Book"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Author"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Teacher"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Subject"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$User"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Role"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Course"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Library"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Doctor"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Patient"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Product"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Category"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Project"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Invoice"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Payment"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Flight"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Ticket"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Movie"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Actor"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Parent"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Child"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$School"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Classroom"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Driver"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Car"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Hotel"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Room"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Account"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$AccountTransaction"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$Country"/>
+        <mapping class="com.student.hibernate.lecture4.task3.Lecture4Relationships$City"/>
+
+        <mapping class="com.student.hibernate.lecture5.Course"/>
+        <mapping class="com.student.hibernate.lecture5.Student"/>
+
+        <mapping class="com.student.hibernate.lecture6.User"/>
+        <mapping class="com.student.hibernate.lecture6.UserDetails"/>
+        <mapping class="com.student.hibernate.lecture6.Friend"/>
+        <mapping class="com.student.hibernate.lecture6.Post"/>
+        <mapping class="com.student.hibernate.lecture6.eager.EagerUser"/>
+        <mapping class="com.student.hibernate.lecture6.eager.EagerUserDetails"/>
+        <mapping class="com.student.hibernate.lecture6.inheritance.BaseUser"/>
+        <mapping class="com.student.hibernate.lecture6.inheritance.AdminUser"/>
+        <mapping class="com.student.hibernate.lecture6.inheritance.NormalUser"/>
+
+    </session-factory>
+</hibernate-configuration>
