@@ -1,0 +1,135 @@
+Database Lecture 5 Research
+===========================
+
+PRIMARY KEY and NOT NULL UNIQUE
+-------------------------------
+
+A primary key is used to identify every row in a table. Its value cannot be
+null and it cannot be repeated. A table can have only one primary key, but the
+primary key can be made of more than one column.
+
+NOT NULL and UNIQUE are two separate constraints. NOT NULL means that the
+column must have a value. UNIQUE means that the same value cannot be used in
+more than one row. When we use both constraints on the same column, the result
+looks similar to a primary key because the value cannot be null or repeated.
+
+The main difference is the meaning of the column. A primary key is the main
+identity of the row. A NOT NULL UNIQUE column is usually another important
+value, such as an email, phone number, national ID, or username.
+
+We normally use a primary key for columns such as student_id, employee_id, or
+order_id. We use NOT NULL UNIQUE for a value that must exist and must not be
+repeated, but is not the main ID.
+
+A table can have many UNIQUE constraints, but it has only one primary key. In
+Oracle, a UNIQUE column can contain null values, so NOT NULL is also needed
+when the value is required.
+
+Example:
+
+CREATE TABLE students
+(
+    student_id NUMBER PRIMARY KEY,
+    email      VARCHAR2(150) NOT NULL UNIQUE,
+    name       VARCHAR2(100)
+);
+
+student_id is the main identifier. email is also required and unique, but it
+is not the primary key.
+
+
+One-to-One Relationship
+-----------------------
+
+A one-to-one relationship means that one row in the first table is connected
+to only one row in the second table. The second row is also connected to only
+one row in the first table.
+
+For example, one employee has one phone, and one phone belongs to one
+employee. Another example is a person and a passport.
+
+A foreign key is used to connect the two tables. The foreign key should also
+be UNIQUE. Without UNIQUE, many rows could use the same foreign key and the
+relationship would become many-to-one.
+
+
+Where should the Join Column be placed?
+---------------------------------------
+
+The join column is the foreign key column. In JPA, the class that contains
+@JoinColumn is called the owning side of the relationship.
+
+We usually put the join column in the table that depends on the other table,
+or in the class that is responsible for managing the relationship.
+
+For Employee and Phone, phone_id can be placed in the employees table because
+the employee is assigned a phone:
+
+@OneToOne
+@JoinColumn(name = "phone_id", unique = true)
+private Phone phone;
+
+The Phone class is the other side, so it uses mappedBy:
+
+@OneToOne(mappedBy = "phone")
+private Employee employee;
+
+In a Person and Passport example, person_id can be placed in the passport
+table because the passport belongs to a person.
+
+The best side depends on the meaning of the relation and which object is
+responsible for saving it. @JoinColumn should be used on one side only. The
+other side uses mappedBy.
+
+
+Many-to-Many Relationship
+-------------------------
+
+A many-to-many relationship means that many rows from the first table can be
+connected to many rows from the second table.
+
+For example, one student can join many courses, and one course can have many
+students. The same idea is used for doctors and patients. One doctor has many
+patients, and one patient can visit many doctors.
+
+This relation needs a third table called a join table. The join table stores
+the IDs from both tables.
+
+Example:
+
+@ManyToMany
+@JoinTable(
+    name = "student_courses",
+    joinColumns = @JoinColumn(name = "student_id"),
+    inverseJoinColumns = @JoinColumn(name = "course_id")
+)
+private Set<Course> courses = new HashSet<>();
+
+The other class uses mappedBy:
+
+@ManyToMany(mappedBy = "courses")
+private Set<Student> students = new HashSet<>();
+
+@ManyToMany defines the relation. @JoinTable gives a name to the middle table.
+joinColumns points to the owning class, and inverseJoinColumns points to the
+other class.
+
+The student_courses table contains student_id and course_id. Together, these
+columns represent one connection between a student and a course.
+
+
+Relations Used in the Tasks
+---------------------------
+
+Doctor and Patient:
+This is a many-to-many relation. It needs a join table called doctor_patients.
+
+Teacher and Language:
+This is a many-to-one relation from Teacher to Language. Each teacher has one
+language, but the same language can be used by many teachers. language_id is
+placed in the teachers table.
+
+Employee and Phone:
+This is a one-to-one relation. phone_id is placed in the employees table and
+it is marked as UNIQUE, so the same phone cannot belong to two employees.
+
