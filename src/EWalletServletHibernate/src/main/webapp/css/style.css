@@ -1,0 +1,32 @@
+:root { font-family: Arial, sans-serif; color: #17202a; background: #f4f7fb; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+header { display: flex; justify-content: space-between; align-items: center; padding: 18px 7%; background: white; box-shadow: 0 2px 12px #dce3ec; }
+header span { margin-left: 25px; color: #6b7280; }
+.container { max-width: 1050px; margin: 35px auto; padding: 0 18px; }
+.auth-page { min-height: 100vh; display: grid; place-items: center; padding: 25px; background: linear-gradient(135deg,#e8f1ff,#f9fbff); }
+.auth-card { width: min(850px, 100%); background: white; padding: 35px; border-radius: 18px; box-shadow: 0 15px 45px #bed0e8; }
+.auth-card > h1, .auth-card > p { text-align: center; }
+.forms, .actions { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.forms { grid-template-columns: 1fr 1fr; }
+form { background: white; }
+label { display: block; margin: 12px 0; font-size: 14px; }
+input { width: 100%; border: 1px solid #ccd5e0; border-radius: 8px; padding: 11px; margin-top: 6px; }
+button { border: 0; border-radius: 8px; padding: 11px 18px; color: white; background: #2563eb; cursor: pointer; }
+.secondary { color: #25314a; background: #e8edf5; }
+.balance-card { color: white; background: linear-gradient(120deg,#2563eb,#6042d8); padding: 28px; border-radius: 18px; margin-bottom: 22px; }
+.balance-card p { margin: 0; opacity: .8; }
+.balance-card h1 { font-size: 38px; margin: 10px 0; }
+.actions form, .history { padding: 20px; border-radius: 14px; box-shadow: 0 4px 18px #dfe6ef; }
+.history { margin-top: 25px; background: white; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: left; }
+.muted { color: #6b7280; }
+.alert { padding: 12px; border-radius: 8px; margin: 12px 0; }
+.error { color: #991b1b; background: #fee2e2; }
+.success { color: #166534; background: #dcfce7; }
+@media (max-width: 700px) {
+    .forms, .actions { grid-template-columns: 1fr; }
+    header span { display: none; }
+}
