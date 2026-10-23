@@ -4,23 +4,29 @@ public class Item {
 
     private Long id;
     private String name;
-    private Double price;
-    private Integer totalNumber;
+    private double price;
+    private double total_number;
 
-    public Item() {
+    public Item(
+            String name,
+            double price,
+            double total_number
+    ) {
+        this.name = name;
+        this.price = price;
+        this.total_number = total_number;
     }
 
-    public Item(Long id, String name, Double price, Integer totalNumber) {
+    public Item(
+            Long id,
+            String name,
+            double price,
+            double total_number
+    ) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.totalNumber = totalNumber;
-    }
-
-    public Item(String name, Double price, Integer totalNumber) {
-        this.name = name;
-        this.price = price;
-        this.totalNumber = totalNumber;
+        this.total_number = total_number;
     }
 
     public Long getId() {
@@ -39,19 +45,19 @@ public class Item {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public Integer getTotalNumber() {
-        return totalNumber;
+    public double getTotalNumber() {
+        return total_number;
     }
 
-    public void setTotalNumber(Integer totalNumber) {
-        this.totalNumber = totalNumber;
+    public void setTotalNumber(double total_number) {
+        this.total_number = total_number;
     }
 }

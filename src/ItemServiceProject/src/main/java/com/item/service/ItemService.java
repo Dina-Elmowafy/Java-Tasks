@@ -1,16 +1,18 @@
 package com.item.service;
 
-import com.item.model.Item;
-
 import java.util.List;
 
-public interface ItemService {
+import com.item.model.Item;
 
-    List<Item> getAllItems();
+public interface itemService {
 
-    Item selectItem(Long id);
+    List<Item> getAllItem();
 
-    boolean addItem(Item item);
+    Item selectItem();
 
-    boolean updateItem(Item item);
+    boolean updatItem(Long id);
+
+    boolean deleteItem(Long id);
+
+    boolean addIteam(Long id);
 }
