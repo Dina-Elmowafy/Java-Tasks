@@ -1,0 +1,20 @@
+<section class="container py-5">
+  <h2>تفاصيل المنتج / Product details</h2>
+  <p>رقم المنتج / Product ID: {{model.productId}}</p>
+  <form #detailsForm="ngForm" (ngSubmit)="save()">
+    <label for="details">التفاصيل / Details</label>
+    <textarea id="details" name="details" class="form-control mb-3" required maxlength="2000"
+              [(ngModel)]="model.details"></textarea>
+    <label for="ingredients">المكونات / Ingredients</label>
+    <textarea id="ingredients" name="ingredients" class="form-control mb-3" maxlength="2000"
+              [(ngModel)]="model.ingredients"></textarea>
+    <button class="btn btn-primary mr-2" type="submit" [disabled]="detailsForm.invalid || loading">
+      حفظ / Save
+    </button>
+    <button class="btn btn-danger" type="button" *ngIf="model.id" (click)="delete()">
+      حذف / Delete
+    </button>
+  </form>
+  <p class="text-success mt-3" *ngIf="message">{{message}}</p>
+  <p class="text-danger mt-3" *ngIf="error">{{error}}</p>
+</section>
