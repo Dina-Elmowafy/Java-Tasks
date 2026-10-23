@@ -1,0 +1,52 @@
+name: Organize Spring and Hibernate tasks
+
+on:
+  push:
+    paths:
+      - 'src/hibernate-lectures-4-6-upload.zip'
+      - '.github/workflows/organize-spring-hibernate.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  organize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Organize projects
+        shell: bash
+        run: |
+          archive="src/hibernate-lectures-4-6-upload.zip"
+          hibernate_destination="src/HibernateTasksLectures4To6"
+          spring_source="src/SpringContainerTasks"
+          spring_destination="src/Spring Tasks/SpringContainerTasks"
+
+          if [ -f "$archive" ]; then
+            if [ -e "$hibernate_destination" ]; then
+              echo "Hibernate destination already exists."
+              exit 1
+            fi
+            unzip -q "$archive" -d "src"
+            git rm "$archive"
+            git add -f "$hibernate_destination"
+          fi
+
+          if [ -d "$spring_source" ]; then
+            if [ -e "$spring_destination" ]; then
+              echo "Spring destination already exists."
+              exit 1
+            fi
+            mkdir -p "src/Spring Tasks"
+            git mv "$spring_source" "$spring_destination"
+          fi
+
+          if git diff --cached --quiet; then
+            echo "Nothing to organize."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Organize Spring and Hibernate tasks"
+          git push
