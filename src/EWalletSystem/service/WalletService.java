@@ -1,4 +1,6 @@
-package EWalletSystem;
+package EWalletSystem.service;
+
+import EWalletSystem.model.BaseAccount;
 
 public interface WalletService {
 

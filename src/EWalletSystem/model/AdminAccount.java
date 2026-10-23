@@ -1,4 +1,6 @@
-package EWalletSystem;
+package EWalletSystem.model;
+
+import EWalletSystem.repository.WalletRepository;
 
 public class AdminAccount extends BaseAccount {
     public AdminAccount(String username, String password, String phone, int age) {
