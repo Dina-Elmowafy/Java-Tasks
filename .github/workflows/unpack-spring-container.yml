@@ -1,0 +1,39 @@
+name: Unpack Spring Container project
+
+on:
+  push:
+    paths:
+      - 'src/spring-container-upload.zip'
+      - '.github/workflows/unpack-spring-container.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack project
+        shell: bash
+        run: |
+          archive="src/spring-container-upload.zip"
+          destination="src/SpringContainerTasks"
+
+          if [ ! -f "$archive" ]; then
+            echo "Archive is already removed."
+            exit 0
+          fi
+
+          if [ -e "$destination" ]; then
+            echo "Destination already exists: $destination"
+            exit 1
+          fi
+
+          unzip -q "$archive" -d "src"
+          git rm "$archive"
+          git add -f "$destination"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Add Spring container tasks"
+          git push
