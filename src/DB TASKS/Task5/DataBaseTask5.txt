@@ -1,0 +1,67 @@
+1. What is the difference between DROP CONSTRAINT and DISABLE CONSTRAINT?
+
+A constraint is a rule added to a database table to keep the data correct.
+Examples of constraints are PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK, and NOT NULL.
+
+DROP CONSTRAINT and DISABLE CONSTRAINT are both used with constraints, but they are not the same.
+
+DROP CONSTRAINT removes the constraint completely from the table.
+This means the constraint no longer exists, and if we need it again, we must create it again using ADD CONSTRAINT.
+
+DISABLE CONSTRAINT does not delete the constraint.
+It only stops the constraint temporarily. The constraint still exists in the database, and we can enable it again later using ENABLE CONSTRAINT.
+
+
+2. Do both achieve the same goal?
+
+Not exactly.
+
+They are similar because both can stop the constraint from preventing some operations.
+For example, if a foreign key is dropped or disabled, it will not stop some inserts or deletes.
+
+But they do not achieve the same goal completely.
+
+DROP CONSTRAINT is permanent.
+It deletes the rule from the table.
+
+DISABLE CONSTRAINT is temporary.
+It keeps the rule in the database but turns it off for some time.
+
+
+3. What is the main difference between them?
+
+The main difference is that DROP CONSTRAINT deletes the constraint, while DISABLE CONSTRAINT only turns it off.
+
+If we use DROP CONSTRAINT, we cannot enable it again directly.
+We must create it again.
+
+If we use DISABLE CONSTRAINT, we can enable it again easily.
+
+
+4. When should we use DROP CONSTRAINT?
+
+We use DROP CONSTRAINT when we do not need the constraint anymore.
+
+For example:
+
+- If the database design changed.
+- If the relationship between two tables is no longer needed.
+- If the constraint was created incorrectly.
+- If we want to replace the constraint with a new one.
+
+5. When should we use DISABLE CONSTRAINT?
+
+We use DISABLE CONSTRAINT when we want to stop the constraint for a short time, but we still need it later.
+
+For example:
+
+- During data migration.
+- During bulk insert.
+- When importing old data.
+- During testing.
+- When we want to insert data first and fix it later.
+
+
+
+
+"I used GBT chat for coordination"
