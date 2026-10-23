@@ -1,5 +1,8 @@
 package EWalletSystem.model;
 
+
+
+// Abstract class representing a base account
 public abstract class BaseAccount {
 
     protected String username;
@@ -17,7 +20,6 @@ public abstract class BaseAccount {
         this.balance = 0;
     }
 
-    // -------- GETTERS --------
     public String getUsername() { return username; }
     public String getPassword() { return password; }
     public String getPhone() { return phone; }
@@ -25,24 +27,20 @@ public abstract class BaseAccount {
     public double getBalance() { return balance; }
     public boolean isActive() { return isActive; }
 
-    // -------- SETTERS --------
     public void setPassword(String password) { this.password = password; }
     public void setBalance(double balance) { this.balance = balance; }
     public void deactivate() { isActive = false; }
 
-    // -------- VALIDATION METHODS --------
+    // -------- VALIDATION --------
     public static boolean validateUsername(String username) {
-        // Must start with uppercase and contain only letters
         return username.matches("[A-Z][a-zA-Z]*");
     }
 
     public static boolean validatePhone(String phone) {
-        // Egyptian phone format: 11 digits, starts with 010,011,012,015
         return phone.matches("01[0125]\\d{8}");
     }
 
     public static boolean validatePassword(String password) {
-        // Minimum 6 chars, at least 1 digit, 1 uppercase, 1 lowercase
         return password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$");
     }
 
