@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/item"
+              auth="Container"
+              type="javax.sql.DataSource"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@localhost:1521/ORCLPDB1"
+              username="system"
+              password="oracle"
+              initialSize="2"
+              maxActive="10"
+              maxIdle="5"
+              testOnBorrow="true"
+              validationQuery="SELECT 1 FROM dual"/>
+</Context>
